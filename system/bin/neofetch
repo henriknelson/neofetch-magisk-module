@@ -32,7 +32,7 @@ version="6.0.0"
 
 bash_version="${BASH_VERSION/.*}"
 sys_locale="${LANG:-C}"
-XDG_CONFIG_HOME="/storage/emulated/0/.config"
+XDG_CONFIG_HOME="$HOME/.config"
 PATH="${PATH}:/usr/xpg4/bin:/usr/sbin:/sbin:/usr/etc:/usr/libexec"
 reset='\e[0m'
 shopt -s nocasematch
@@ -4683,7 +4683,7 @@ get_args() {
             "-vv") set -x; verbose="on" ;;
             "--help") usage ;;
             "--version")
-                printf '%s\n' "Neofetch $version"
+                printf '%s\n' "Neofetch $version - modified for Android by nelshh @ xda-developers"
                 exit 1
             ;;
             "--gen-man")
