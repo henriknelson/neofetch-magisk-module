@@ -123,27 +123,37 @@ REPLACE="
 
 print_modname() {
   ui_print "*********************************************"
-  ui_print "     neofetch for Android    	         "
-  ui_print "         - v6.0.0                            "
+  ui_print "     Neofetch for Android                    "
+  ui_print "         - v 7.0.0                           "
   ui_print "         - built by nelshh @ xda-developers  "
   ui_print "*********************************************"
 }
 
 # Copy/extract your module files into $MODPATH in on_install.
 on_install() {
-  ui_print "[1/4] Extracting files..";
+  ui_print "[1/5] Extracting files..";
   unzip -o "$ZIPFILE" '*' -d $MODPATH >&2;
-  ui_print "[2/4] Setting permissions..";
+  ui_print "[2/5] Setting permissions..";
 }
 
 set_permissions() {
   # The following is the default rule, DO NOT remove
   set_perm_recursive $MODPATH 0 0 0755 0644;
 
-  ui_print "[3/4] Installing to /system/bin..";
-  chown -R 0:0 $MODPATH/system/bin;
-  chmod -R 755 $MODPATH/system/bin;
-  find $MODPATH/system/bin -type f -exec chmod 755 {} +;
+  ui_print "[3/5] Installing to /system/bin..";
+  chown -R 0:0 $MODPATH/system/bin/*;
+  chmod -R 755 $MODPATH/system/bin/*;
 
-  ui_print "[4/4] Installation finished";
+  ui_print "[4/5] Installing to /data/man..";
+  mkdir -p /data/man;
+  cp -r $MODPATH/custom/man/* /data/man/;
+  chmod -R 664 /data/man;
+  chown -R 0:0 /data/man;
+  find /data/man -type d -exec chmod 755 {} \+;
+  find /data/man -type f -exec chmod 664 {} \+;
+  if [[ -s "/system/bin/mandoc" ]]; then
+     makewhatis /data/man;
+  fi
+
+  ui_print "[5/5] Installation finished";
 }

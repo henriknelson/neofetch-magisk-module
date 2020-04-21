@@ -1,6 +1,6 @@
-id=neofetch-ndk
+id=neofetch-nelshh
 name=Neofetch For Android
-version=v6.0.0
-versionCode=1
+version=v7.0.0
+versionCode=4
 author=nelshh
 description=A statically built version of neofetch for android (aarch64)
