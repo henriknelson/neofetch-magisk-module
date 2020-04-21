@@ -6,6 +6,9 @@ This Magisk module installs the latest stable version of neofetch to the target 
 
 ## Change Log
 
+### v1.1 - 2020-04-21
+* Updated neofetch to v.7.0.0
+
 ### v1.0 - 2019-08-07
 * Initial release
 
